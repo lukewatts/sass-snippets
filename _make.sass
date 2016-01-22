@@ -1,0 +1,42 @@
+/// Digs down into a three level map for an aliased value.
+/// Example
+///   $options: (
+///     font: (
+///       size: (
+///         small: 12px,
+///         regular: 16px,
+///         large: 24px
+///       )
+///     ),
+///     family: (
+///       sans: 'Open Sans', Verdana, sans
+///       serif: Georgia, serif
+///       code: 'Courier New', Monaco, monospace 
+///     )
+///   )
+/// h1
+///   font:
+///     size: make(font, size, large, $options)
+///     family: make(font, family, serif, $options)
+/// @author Luke Watts
+/// @since 0.0.1
+/// @require {function} ss_is-string
+/// @require {function} ss_is-map
+/// @require {function} ss_empty
+/// @parameter {string} $this - First dimension key of map $map.
+/// @parameter {string} $property - Second dimension key $map
+/// @parameter {string} $alias - Third dimension key of $map
+/// @parameter {map} $map - The map to be used.
+/// @outputs Single value from specified map $map.
+@mixin ss_make($this, $property, $alias, $map: ())
+  @if ss_is-string($this) and ss_is-string($property) and ss_is-string($alias) and ss_is-map($map)
+    @if not ss_empty($this) and not ss_empty($property) and not ss_empty($alias) and not ss_empty($map)
+      @if map-has-key($map, $this)
+        // Create a new map starting at the first dimension
+        $this_map: map-get($map, $this)
+        @if map-has-key($this_map, $property)
+          // Create a new map starting at the second dimension
+          $property_map: map-get($this_map, $property)
+          @if map-has-key($property_map, $alias)
+            // Finally, get the third dimension value
+            #{$this}-#{$property}: #{map-get($property_map, $alias)}
