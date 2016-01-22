@@ -1,0 +1,35 @@
+@import ../sass-snippets
+
+.is-empty
+    $empty: ""
+    $not-empty: "Not empty"
+    /* @assert true */
+    content: ss_empty($empty)
+    /* @assert false */
+    content: ss_empty($not-empty)
+
+.is-bool
+    $true: true
+    $false: false
+    $string: "I'm a string"
+    $number: 10
+    $color: #fff
+    $null: null
+    $list: (1, 2, 3)
+    $map: (key1: 1, key2: 2, key3: 3)
+    /* @assert true */
+    content: ss_is-bool($true)
+    /* @assert true */
+    content: ss_is-bool($false)
+    /* @assert false */
+    content: ss_is-bool($string)
+    /* @assert false */
+    content: ss_is-bool($number)
+    /* @assert false */
+    content: ss_is-bool($color)
+    /* @assert false */
+    content: ss_is-bool($null)
+    /* @assert false */
+    content: ss_is-bool($list)
+    /* @assert false */
+    content: ss_is-bool($map)
