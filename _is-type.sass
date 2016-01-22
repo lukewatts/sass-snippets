@@ -1,0 +1,36 @@
+/// Checks the type of a value against a given type.
+///
+/// @author Luke Watts <luke@luke-watts.com>
+/// @since 0.0.1
+/// @require {function} ss_is-string
+/// @require {function} ss_is-int
+/// @require {function} ss_is-bool
+/// @require {function} ss_is-null
+/// @require {function} ss_is-color
+/// @require {function} ss_is-list
+/// @require {function} ss_is-map
+///
+/// @param {mixed} $val - The value you want to check the type of.
+/// @param {string} $type - The type you want to check $val is or is not.
+/// @throws $val in ss_ss-type function was not a known Sass data type.
+///
+/// @return {bool} - Returns true or false.
+@function ss_is-type($val, $type)
+  $type: unquote($type)
+  
+  @if $type == string
+    @return ss_is-string($val)
+  @else if $type == number or $type == int
+    @return ss_is-int($val)
+  @else if $type == bool
+    @return ss_is-bool($val)
+  @else if $type == null
+    @return ss_is-null($val)
+  @else if $type == color
+    @return ss_is-color($val)
+  @else if $type == list
+    @return ss_is-list($val)
+  @else if $type == map
+    @return ss_is-map($val)
+  @else
+    @error "$val in ss_ss-type function was not a known Sass data type."
