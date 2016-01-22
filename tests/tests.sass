@@ -1,5 +1,8 @@
 @import ../sass-snippets
 
+// Test ss_empty() function
+// @author Luke Watts
+// @since 0.0.1
 .is-empty
     $empty: ""
     $not-empty: "Not empty"
@@ -8,6 +11,9 @@
     /* @assert false */
     content: ss_empty($not-empty)
 
+// Test ss_is-bool() function
+// @author Luke Watts
+// @since 0.0.1
 .is-bool
     $true: true
     $false: false
