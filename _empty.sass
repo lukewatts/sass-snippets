@@ -1,0 +1,15 @@
+/// Checks whether a string is empty or not.
+/// Can be a variable which contains a string or function which returns a string.
+/// @author Luke Watts
+/// @since 0.0.1
+/// @parameter {string} $val - The value to check.
+/// @return {true | false}
+/// @throws $val in function ss_empty must be a string. Type #{type-of($val)} was given
+@function ss_empty($val)
+  @if type-of($val) == string
+    @if str-length($val) > 0
+      @return false
+    @else
+      @return true
+  @else
+    @error "$val in function ss_empty must be a string. Type #{type-of($val)} was given"
